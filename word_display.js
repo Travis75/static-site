@@ -1,33 +1,34 @@
 $( document ).ready(function() {
 
 //Create canvas with the device resolution.
-var myCanvas = document.createElement('canvas');
+var myCanvas = createHiDPICanvas(window.innerWidth, window.innerHeight)
 $('body').append(myCanvas)
 
   var c = $('canvas')[0]
   var context = c.getContext("2d");
   context.font = "30px Arial";
 
-
-  function fadeIn(text) {
-    var alpha = 0,   // zero opacity
-    interval = setInterval(function () {
-      canvas.width = canvas.width; // Clears the canvas
-      context.fillStyle = "rgba(255, 0, 0, " + alpha + ")";
-      context.font = "italic 20pt Arial";
-      context.fillText(text, 50, 50);
-      alpha = alpha - 0.05; // decrease opacity (fade out)
-      if (alpha < 0) {
-        canvas.width = canvas.width;
-        clearInterval(interval);
-      }
-    }, 50);
-  }
-
-
-
-  fadeIn(context, "Hello World")
+  var FPS = 30;
+  setInterval(function(context) {
+    drawText(context);
+  }(context), 1000/FPS);
 });
+
+
+
+function drawText(context) {
+  context.fillText("Hello World", 550, 100)
+}
+
+
+
+
+
+
+
+
+
+
 
 var PIXEL_RATIO = (function () {
   var ctx = document.createElement("canvas").getContext("2d"),
