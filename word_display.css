@@ -1,6 +1,13 @@
 body {
   height: 100%;
   width: 100%;
+  background-color: #1b4159;
+}
+.container {
+  position: relative;
+}
+img {
+  position: absolute;
 }
 canvas {
   height: 100%;

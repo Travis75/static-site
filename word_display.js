@@ -2,28 +2,54 @@ $( document ).ready(function() {
   CANVAS_WIDTH = window.innerWidth;
   CANVAS_HEIGHT = window.innerHeight;
 //Create canvas with the device resolution.
-var myCanvas = createHiDPICanvas(CANVAS_WIDTH, CANVAS_HEIGHT)
-$('body').append(myCanvas)
+  var myCanvas = createHiDPICanvas(CANVAS_WIDTH, CANVAS_HEIGHT)
+  $('.container').append(myCanvas)
 
   var c = $('canvas')[0]
   var context = c.getContext("2d");
   context.font = "30px Arial";
 
-  var FPS = 30;
-  setInterval(function(context, c) {
-    drawText(context, c);
-  }(context, c), 1000/FPS);
+  var test = new Word(["Stuff", "Hello World"], context)
+  test.loop();
 });
 
 
-
-function drawText(context, canvas) {
-  context.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
-  context.fillText("Hello World", 550, 100)
+function Word(words, context) {
+  this.words = words;
+  this.word = this.words.shift();
+  this.context = context;
+  this.x_axis = 0;
+  this.y_axis = 50;
+  this.alpha = 0;
+  this.delta = 0.01;
 }
 
-
-
+Word.prototype = {
+  loop: function() {
+    this.alpha += this.delta;
+    this.context.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+    this.context.fillStyle = "rgba(0, 0, 0, " + this.alpha + ")";
+    this.context.fillText(this.word, this.x_axis, this.y_axis)
+    if (this.alpha <= 0 || this.alpha >= 1) {
+      this.delta = -this.delta;
+      if (this.alpha <= 0) {
+        debugger;
+        this.words.push(this.word)
+        this.word = this.words.shift();
+        this.newXAxis();
+        this.newYAxis();
+      }
+    }
+    var self = this;
+    requestAnimationFrame(function(){self.loop()});
+  },
+  newXAxis: function() {
+    this.x_axis = Math.floor(Math.random()*CANVAS_WIDTH) + 1;
+  },
+  newYAxis: function() {
+    this.y_axis = Math.floor(Math.random()*CANVAS_HEIGHT) + 1;
+  }
+};
 //  function fadeIn(text) {
 //    var alpha = 0,   // zero opacity
 //    interval = setInterval(function () {
