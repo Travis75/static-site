@@ -1,16 +1,17 @@
 $( document ).ready(function() {
-  CANVAS_WIDTH = window.innerWidth;
-  CANVAS_HEIGHT = window.innerHeight;
-//Create canvas with the device resolution.
+  //Create canvas with the device resolution.
+  CANVAS_WIDTH = window.innerWidth - 30;
+  CANVAS_HEIGHT = window.innerHeight - 30;
   var myCanvas = createHiDPICanvas(CANVAS_WIDTH, CANVAS_HEIGHT)
   $('#container').append(myCanvas)
 
+  // Grab Canvas & Set Font & Size
   var c = $('canvas')[0]
   var context = c.getContext("2d");
   context.font = "30px Arial";
 
-  var test = new Word(["Pawtastic", "Pawdacious", "Pawsome", "Pawcitement"], context)
-  test.loop();
+  var display = new Word(["Pawtastic", "Pawdacious", "Pawsome", "Pawcitement"], context)
+  display.loop();
 });
 
 
@@ -43,13 +44,14 @@ Word.prototype = {
     requestAnimationFrame(function(){self.loop()});
   },
   newXAxis: function() {
-    this.x_axis = Math.floor(Math.random()*(CANVAS_WIDTH-100)) + 1;
+    this.x_axis = Math.floor(Math.random()*CANVAS_WIDTH) + 1;
   },
   newYAxis: function() {
-    this.y_axis = Math.floor(Math.random()*(CANVAS_HEIGHT-100)) + 1;
+    this.y_axis = Math.floor(Math.random()*CANVAS_HEIGHT) + 1;
   }
 };
 
+// Below functions create canvas with proper ratio
 var PIXEL_RATIO = (function () {
   var ctx = document.createElement("canvas").getContext("2d"),
     dpr = window.devicePixelRatio || 1,
@@ -61,7 +63,6 @@ var PIXEL_RATIO = (function () {
 
   return dpr / bsr;
 })();
-
 createHiDPICanvas = function(w, h, ratio) {
   if (!ratio) { ratio = PIXEL_RATIO; }
   var can = document.createElement("canvas");
