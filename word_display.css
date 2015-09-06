@@ -3,13 +3,41 @@ body {
   width: 100%;
   background-color: #1b4159;
 }
-.container {
+#container {
+  height: 100%;
+  width: 100%;
   position: relative;
 }
 img {
+  margin: auto;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
   position: absolute;
+  width: 35%;
 }
 canvas {
+  z-index: 10;
   height: 100%;
   width: 100%;
+}
+.footerholder {
+    background: none repeat scroll 0 0 transparent;
+    bottom: 0;
+    position: fixed;
+    text-align: center;
+    width: 100%;
+}
+
+.footer {
+    background: none repeat scroll 0 0 transparent;
+    color: white;
+    font: 20px Arial;
+    height: 40px;
+    margin: auto;
+    width: 400px;
+}
+a {
+  text-decoration: none;
 }
