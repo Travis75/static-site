@@ -29,20 +29,20 @@ html, body {
   display: none;
 }
 .footerholder {
-    background: none repeat scroll 0 0 transparent;
-    bottom: 0;
-    position: fixed;
-    text-align: center;
-    width: 100%;
+  background: none repeat scroll 0 0 transparent;
+  bottom: 0;
+  position: fixed;
+  text-align: center;
+  width: 100%;
 }
 
 .footer {
-    background: none repeat scroll 0 0 transparent;
-    color: white;
-    font: 20px Arial;
-    height: 40px;
-    margin: auto;
-    width: 400px;
+  background: none repeat scroll 0 0 transparent;
+  color: white;
+  font: 20px Arial;
+  height: 40px;
+  margin: auto;
+  width: 400px;
 }
 a {
   text-decoration: none;
