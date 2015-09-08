@@ -7,21 +7,17 @@ html, body {
 }
 #container {
   text-align: center;
-  position: absolute;
   width: 100%;
 }
 #hero {
-  position: relative;
 }
 #hero img {
-  width: 45%;
+  width: 50%;
 }
 #word-display {
-  position: relative;
-  text-align: center;
 }
 #word-display img {
-  width: 45%;
+  width: 35%;
 }
 .hidden {
   display: none;
