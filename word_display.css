@@ -8,8 +8,7 @@ html, body {
 #container {
   text-align: center;
   width: 100%;
-}
-#hero {
+  margin-top: 5em;
 }
 #hero img {
   width: 50%;
